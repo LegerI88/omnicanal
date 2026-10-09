@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omnicanal – Bac Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#2a8c9c; --teal-d:#1d6673; --teal-l:#e3f3f5;
+  --violet:#7b5cc4; --violet-l:#efeafb;
+  --orange:#f0883e; --orange-l:#fdeee2;
+  --green:#5aa84a; --green-l:#e8f5e4;
+  --red:#e0524b; --red-l:#fde8e7;
+  --yellow:#f6c84c; --yellow-l:#fff7dc;
+  --ink:#24323a; --muted:#5f6f78; --line:#d9e2e6; --bg:#f3f7f8; --card:#ffffff;
+  --radius:18px; --shadow:0 6px 22px rgba(30,70,80,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Nunito",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:17px}
+h1,h2,h3,h4{font-family:"Baloo 2",cursive;line-height:1.15;margin:0 0 .4em}
+a{color:var(--teal-d)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(135deg,var(--teal) 0%,#3aa3a8 55%,var(--violet) 130%);color:#fff;padding:46px 0 70px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.2);padding:4px 14px;border-radius:30px;font-weight:700;font-size:.85rem;letter-spacing:.04em}
+.hero h1{font-size:clamp(2rem,5vw,3.3rem);margin:.3em 0 .2em}
+.hero p{max-width:720px;font-size:1.08rem;opacity:.95;margin:0}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero .meta span{background:#fff;color:var(--teal-d);padding:6px 14px;border-radius:12px;font-weight:800;font-size:.9rem}
+
+/* ---------- NAV ---------- */
+nav.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 18px;scrollbar-width:none}
+nav.top a{flex:0 0 auto;text-decoration:none;font-weight:800;font-size:.86rem;padding:7px 13px;border-radius:30px;color:var(--muted);background:var(--bg);transition:.2s}
+nav.top a:hover,nav.top a.active{background:var(--teal);color:#fff}
+#progress{position:absolute;left:0;bottom:-1px;height:3px;background:linear-gradient(90deg,var(--orange),var(--violet));width:0}
+
+/* ---------- SECTIONS ---------- */
+section{padding:40px 0 10px;scroll-margin-top:60px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.num{flex:0 0 auto;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-family:"Baloo 2";font-weight:800;font-size:1.6rem;color:#fff;background:var(--teal);box-shadow:var(--shadow)}
+.sec-head h2{font-size:clamp(1.6rem,3.6vw,2.2rem);margin:0}
+.sec-head small{display:block;color:var(--muted);font-weight:700;font-family:"Nunito"}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:22px}
+.card h3{font-size:1.4rem;color:var(--teal-d)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.78rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
+
+/* boxes */
+.def{border-left:6px solid var(--teal);background:var(--teal-l);padding:14px 18px;border-radius:12px;margin:14px 0}
+.def b:first-child{color:var(--teal-d)}
+.retenir{border:2px dashed var(--orange);background:var(--orange-l);padding:14px 18px;border-radius:14px;margin:14px 0}
+.retenir:before{content:"💡 À retenir";display:block;font-family:"Baloo 2";font-weight:800;color:#b85d16;font-size:1.1rem}
+.attention{background:var(--red-l);border-left:6px solid var(--red);padding:12px 16px;border-radius:12px;margin:14px 0}
+.chiffre{background:var(--violet-l);border-radius:14px;padding:16px;text-align:center}
+.chiffre strong{display:block;font-family:"Baloo 2";font-size:2rem;color:var(--violet);line-height:1.1}
+.chiffre span{font-size:.92rem;font-weight:700}
+.src{font-size:.78rem;color:var(--muted);margin-top:8px}
+
+/* situation */
+.situation{background:linear-gradient(120deg,#fff 0%,var(--yellow-l) 100%);border:2px solid var(--yellow)}
+.persona{display:flex;gap:16px;align-items:flex-start}
+.avatar{flex:0 0 74px;height:74px;border-radius:50%;background:var(--yellow);display:grid;place-items:center;font-size:2.4rem}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;text-align:left}
+th{background:var(--teal);color:#fff;font-family:"Baloo 2";font-size:1.05rem}
+tr:nth-child(even) td{background:#f8fbfc}
+.tscroll{overflow-x:auto}
+
+/* forms of commerce cards */
+.forme{border-radius:16px;padding:18px;color:var(--ink);border-top:8px solid}
+.forme h4{font-size:1.3rem;margin-bottom:6px}
+.f1{background:#eef1fb;border-color:#5b6fc7}
+.f2{background:var(--violet-l);border-color:var(--violet)}
+.f3{background:var(--teal-l);border-color:var(--teal)}
+.forme ul{padding-left:18px;margin:8px 0}
+
+/* franchise schema */
+.franchise{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.fbox{border-radius:16px;padding:16px;color:#fff;text-align:center;font-weight:700}
+.fbox h4{font-size:1.35rem;margin:0}
+.fbox.fr{background:var(--green)} .fbox.fe{background:var(--orange)}
+.arrows{text-align:center;font-weight:800;font-size:.9rem}
+.arrows div{padding:6px 10px;border-radius:10px;margin:6px 0}
+.arrows .a1{background:var(--green-l);color:#2f6d23} .arrows .a2{background:var(--orange-l);color:#a95413}
+@media(max-width:640px){.franchise{grid-template-columns:1fr}}
+
+/* circuits */
+.circuit{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0;padding:12px;border-radius:14px;background:var(--bg)}
+.circuit .lab{font-family:"Baloo 2";font-weight:800;min-width:120px;font-size:1.15rem}
+.node{background:#fff;border:2px solid var(--line);border-radius:12px;padding:6px 12px;font-weight:700;font-size:.92rem}
+.arr{color:var(--muted);font-weight:800}
+
+/* market blocks */
+.mk{border-radius:16px;padding:18px;color:#fff}
+.mk h4{font-size:1.35rem;margin:0 0 6px}
+.mk ul{margin:0;padding-left:18px}
+.mk.i{background:var(--teal)} .mk.o{background:var(--violet)} .mk.d{background:var(--orange)} .mk.e{background:var(--green)}
+
+/* pestel */
+.pestel{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.pestel div{background:var(--green-l);border-radius:12px;padding:10px 12px;font-size:.9rem}
+.pestel b{display:block;font-family:"Baloo 2";font-size:1.5rem;color:#3c7d2e;line-height:1}
+
+/* zone svg */
+.zone-wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:center}
+@media(max-width:760px){.zone-wrap{grid-template-columns:1fr}}
+.zone-wrap svg{width:100%;height:auto}
+.zone-wrap svg .z{cursor:pointer;transition:.2s}
+.zone-wrap svg .z:hover{opacity:.85}
+#zoneInfo{background:var(--bg);border-radius:14px;padding:16px;min-height:170px}
+#zoneInfo h4{font-size:1.3rem}
+
+/* ACTIVITIES */
+.activite{border:3px solid var(--violet);background:#fff}
+.activite > h3{color:var(--violet)}
+.activite > h3:before{content:"✏️ ";}
+.act-tag{background:var(--violet);color:#fff}
+.consigne{background:var(--violet-l);padding:10px 14px;border-radius:12px;font-weight:700;margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:12px;border:2px solid var(--line);margin-bottom:8px;transition:.2s}
+.row p{margin:0;flex:1 1 300px}
+select,input[type=number],input[type=text]{font-family:inherit;font-size:.95rem;padding:7px 10px;border-radius:10px;border:2px solid var(--line);background:#fff;min-width:170px}
+input[type=number]{min-width:120px;max-width:160px}
+.row.ok{border-color:var(--green);background:var(--green-l)}
+.row.ko{border-color:var(--red);background:var(--red-l)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+button{font-family:"Nunito";font-weight:800;font-size:.95rem;border:0;border-radius:12px;padding:10px 16px;cursor:pointer;transition:.15s}
+button:active{transform:scale(.97)}
+.b-check{background:var(--violet);color:#fff}
+.b-sol{background:var(--bg);color:var(--ink);border:2px solid var(--line)}
+.b-reset{background:transparent;color:var(--muted);text-decoration:underline}
+.score{font-weight:800;font-family:"Baloo 2";font-size:1.2rem;color:var(--violet);align-self:center}
+.solution{display:none;background:var(--green-l);border-left:6px solid var(--green);padding:12px 16px;border-radius:12px;margin-top:12px}
+.solution.show{display:block}
+.doc{background:var(--bg);border-radius:14px;padding:14px 16px;margin:10px 0;font-size:.95rem}
+.doc h4{font-size:1.1rem;color:var(--muted);margin-bottom:4px}
+.fictif{font-size:.75rem;font-weight:800;color:#a95413;background:var(--orange-l);padding:2px 8px;border-radius:8px}
+
+/* simulator */
+.sim{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;align-items:end}
+.sim label{font-weight:700;font-size:.9rem;display:block}
+.sim input{width:100%;max-width:none}
+.result{background:linear-gradient(120deg,var(--teal),var(--violet));color:#fff;border-radius:14px;padding:16px;margin-top:14px;font-weight:700}
+.result strong{font-family:"Baloo 2";font-size:1.7rem}
+
+/* flip cards */
+.flip{perspective:900px;height:150px;cursor:pointer}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:16px;padding:14px;display:flex;align-items:center;justify-content:center;text-align:center;backface-visibility:hidden;box-shadow:var(--shadow)}
+.face.front{background:#fff;border:3px solid var(--teal);font-family:"Baloo 2";font-weight:800;font-size:1.25rem;color:var(--teal-d)}
+.face.back{background:var(--teal);color:#fff;transform:rotateY(180deg);font-size:.88rem;font-weight:600}
+
+/* synthese map */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.map .b{border-radius:16px;padding:16px;background:#fff;box-shadow:var(--shadow);border-top:8px solid}
+.map .b h4{font-size:1.2rem}
+.map ul{padding-left:18px;margin:0;font-size:.93rem}
+.center-title{text-align:center;background:var(--teal);color:#fff;border-radius:20px;padding:14px;font-family:"Baloo 2";font-size:1.6rem;font-weight:800;margin-bottom:14px}
+
+/* quiz */
+.q{border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.q p{margin:0 0 8px;font-weight:800}
+.q label{display:block;padding:7px 10px;border-radius:10px;cursor:pointer;margin:3px 0}
+.q label:hover{background:var(--bg)}
+.q.ok{border-color:var(--green);background:var(--green-l)}
+.q.ko{border-color:var(--red);background:var(--red-l)}
+.q .expl{display:none;font-size:.9rem;margin-top:6px;color:var(--muted)}
+.q.ok .expl,.q.ko .expl{display:block}
+#quizScore{font-family:"Baloo 2";font-size:1.6rem;font-weight:800}
+
+/* misc */
+.check-list{list-style:none;padding:0}
+.check-list li{padding:6px 0 6px 30px;position:relative}
+.check-list li:before{content:"✔";position:absolute;left:4px;color:var(--green);font-weight:800}
+footer{background:var(--ink);color:#cfd8dc;padding:30px 0;margin-top:40px;font-size:.88rem}
+footer a{color:#9fe0e8}
+.sources li{margin-bottom:6px}
+.print-btn{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--orange);color:#fff;box-shadow:var(--shadow);border-radius:50px}
+.timeline{display:flex;flex-wrap:wrap;gap:10px;counter-reset:st}
+.step{flex:1 1 170px;background:#fff;border:2px solid var(--teal);border-radius:14px;padding:12px;position:relative;counter-increment:st}
+.step:before{content:counter(st);position:absolute;top:-14px;left:12px;background:var(--teal);color:#fff;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800}
+.step h4{margin-top:6px;font-size:1.1rem;color:var(--teal-d)}
+.step p{margin:0;font-size:.9rem}
+
+/* auteur */
+.author{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.18);padding:6px 14px;border-radius:30px;font-weight:800;font-size:.95rem;margin-left:8px}
+
+/* mode enseignant */
+.prof-only{display:none!important}
+body.prof .prof-only{display:inline-block!important}
+body.prof section.prof-only,body.prof div.prof-only{display:block!important}
+.prof-btn{position:fixed;left:18px;bottom:18px;z-index:60;background:var(--ink);color:#fff;box-shadow:var(--shadow);border-radius:50px}
+body.prof .prof-btn{background:var(--green)}
+.modal{position:fixed;inset:0;background:rgba(20,35,40,.55);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.modal-box{background:#fff;border-radius:20px;padding:26px;max-width:380px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.3);text-align:center}
+.modal-box input{width:100%;margin:12px 0;text-align:center;font-size:1.1rem;letter-spacing:.1em}
+#codeMsg{color:var(--red);font-weight:700;min-height:1.4em;margin:0}
+.prof-zone{border:3px solid var(--ink);background:#fff}
+.prof-banner{background:var(--ink);color:#fff;padding:8px 0;text-align:center;font-weight:800;position:sticky;top:0;z-index:55}
+.corr-list{columns:2 260px;font-size:.92rem}
+.corr-list li{break-inside:avoid;margin-bottom:4px}
+
+
+/* avatar */
+.author{padding:4px 16px 4px 4px}
+.author svg{width:46px;height:46px;border-radius:50%;background:#fff;border:3px solid #ffd28a;display:block}
+.av .eyes{animation:blink 4.5s infinite;transform-box:fill-box;transform-origin:center}
+.av .mouth{transform-box:fill-box;transform-origin:center;opacity:0}
+.av .smile{transition:opacity .15s}
+.talking .av .mouth{opacity:1}
+.talking .av .smile{opacity:0}
+.talking .av .mouth{animation:talk .18s infinite alternate}
+.talking .av .head{animation:nod 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes talk{from{transform:scaleY(.6)}to{transform:scaleY(2.4)}}
+@keyframes nod{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}
+
+/* capsule vidéo – style studio */
+.capsule{position:relative;border-radius:26px;overflow:hidden;margin-bottom:26px;color:#fff;isolation:isolate;
+  background:radial-gradient(circle at 12% 88%,rgba(240,136,62,.45),transparent 42%),radial-gradient(circle at 88% 10%,rgba(123,92,196,.55),transparent 46%),linear-gradient(135deg,#0d2c35 0%,#162a52 100%);
+  box-shadow:0 18px 50px rgba(15,35,60,.35),inset 0 0 0 1px rgba(255,255,255,.08)}
+.capsule:before,.capsule:after{content:"";position:absolute;border-radius:50%;filter:blur(40px);z-index:-1;animation:float 9s ease-in-out infinite}
+.capsule:before{width:180px;height:180px;background:#2a8c9c;left:35%;top:-60px}
+.capsule:after{width:140px;height:140px;background:#e0524b;right:10%;bottom:-50px;animation-delay:-4s;opacity:.6}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
+.cap-top{display:flex;align-items:center;gap:12px;padding:16px 20px 4px;flex-wrap:wrap}
+.cap-chip{background:linear-gradient(90deg,#f0883e,#e0524b);padding:4px 12px;border-radius:30px;font-weight:800;font-size:.75rem;letter-spacing:.12em}
+.cap-title{font-family:"Baloo 2";font-weight:800;font-size:clamp(1.2rem,2.6vw,1.6rem);flex:1}
+.cap-count{font-weight:800;font-size:.85rem;opacity:.75;font-variant-numeric:tabular-nums}
+.stage{display:grid;grid-template-columns:230px 1fr;gap:18px;padding:10px 20px 0;min-height:320px;align-items:end}
+@media(max-width:640px){.stage{grid-template-columns:120px 1fr;gap:10px;min-height:270px}}
+.who{position:relative;align-self:end}
+.who:before{content:"";position:absolute;left:8%;right:8%;bottom:4%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.22),rgba(255,255,255,0) 70%);z-index:-1}
+.stage .av{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 10px 18px rgba(0,0,0,.35))}
+.lower{position:absolute;left:-4px;bottom:14px;background:rgba(255,255,255,.95);color:var(--ink);border-radius:12px;padding:5px 12px 5px 10px;border-left:5px solid var(--orange);box-shadow:0 6px 18px rgba(0,0,0,.25);line-height:1.15}
+.lower b{display:block;font-family:"Baloo 2";font-size:1rem}
+.lower span{font-size:.72rem;font-weight:700;color:var(--muted)}
+@media(max-width:640px){.lower{display:none}}
+.board{position:relative;align-self:stretch;margin-bottom:18px;min-height:260px;border-radius:22px;padding:22px 24px;display:flex;flex-direction:column;justify-content:center;
+  background:linear-gradient(150deg,rgba(255,255,255,.16),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.25);font-family:"Baloo 2"}
+.board.swap{animation:swap .55s both}
+@keyframes swap{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+.board h4{font-size:clamp(1.3rem,3vw,2rem);margin:0 0 10px;background:linear-gradient(90deg,#ffd28a,#ff9f7a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.board p,.board li{font-size:clamp(1rem,2.2vw,1.25rem);margin:5px 0;color:#f4f7fb}
+.board ul{margin:0;padding-left:22px}
+.board li::marker{color:#ffd28a}
+.board .big{font-size:clamp(2.2rem,6vw,3.6rem);text-align:center;margin:0}
+.board .row3{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.board .chip{background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.35);border-radius:14px;padding:9px 14px;text-align:center;font-size:clamp(.95rem,2vw,1.15rem);box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.board svg{max-height:200px;width:100%}
+.board .num-corner{position:absolute;top:12px;right:16px;font-size:.8rem;opacity:.55;font-family:"Nunito";font-weight:800}
+.pop{animation:pop .5s both}
+.d1{animation-delay:.6s}.d2{animation-delay:1.4s}.d3{animation-delay:2.2s}.d4{animation-delay:3s}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+.grow{transform-box:fill-box;transform-origin:center;animation:grow .7s both}
+@keyframes grow{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.subs{margin:0 20px 14px;padding:12px 18px;border-radius:16px;background:rgba(5,12,25,.55);border:1px solid rgba(255,255,255,.08);font-size:1.02rem;min-height:3.4em;line-height:1.5;text-align:center}
+.subs span{opacity:.55;transition:opacity .3s,color .3s}
+.subs span.on{opacity:1;color:#ffd28a}
+.subs.all span{opacity:1}
+.ctrl{display:flex;align-items:center;gap:8px;padding:0 20px 18px;flex-wrap:wrap}
+.ctrl button{background:rgba(255,255,255,.12);color:#fff;width:42px;height:42px;padding:0;border-radius:50%;font-size:1rem;display:grid;place-items:center}
+.ctrl button:hover{background:rgba(255,255,255,.22)}
+.ctrl button.main{width:56px;height:56px;font-size:1.3rem;background:linear-gradient(135deg,#f0883e,#e0524b);box-shadow:0 6px 18px rgba(224,82,75,.45)}
+.vnote{font-size:.78rem;font-weight:700;opacity:.8;max-width:210px;line-height:1.2}
+.dots{display:flex;gap:6px;flex:1;min-width:120px}
+.dots span{flex:1;height:7px;border-radius:6px;background:rgba(255,255,255,.18);cursor:pointer;transition:.3s}
+.dots span.done{background:linear-gradient(90deg,#f0883e,#e0524b)}
+.dots span.cur{background:#ffd28a;box-shadow:0 0 10px rgba(255,210,138,.7)}
+.cover{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;
+  background:radial-gradient(circle at 50% 40%,rgba(42,140,156,.55),rgba(10,20,40,.92) 70%);backdrop-filter:blur(4px);transition:opacity .4s}
+.cover.hide{opacity:0;pointer-events:none}
+.cover .cface{width:110px;height:110px;border-radius:50%;background:#fff;border:4px solid #ffd28a;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.cover .cface svg{width:100%;height:100%}
+.cover h3{font-size:clamp(1.6rem,4vw,2.4rem);margin:0;color:#fff}
+.cover p{margin:0;opacity:.85;font-weight:700}
+.cover button{background:linear-gradient(135deg,#f0883e,#e0524b);color:#fff;font-size:1.1rem;padding:12px 26px;border-radius:40px;box-shadow:0 8px 24px rgba(224,82,75,.5)}
+.capsule:fullscreen{display:flex;flex-direction:column;border-radius:0}
+.capsule:fullscreen .stage{flex:1;grid-template-columns:28% 1fr}
+.capsule:fullscreen .subs{font-size:1.5rem}
+.av .arm{transform-box:view-box;transform-origin:151px 204px;transform:rotate(-12deg);transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
+.talking .av .arm{transform:rotate(-112deg);animation:wave 1.8s ease-in-out .6s infinite}
+@keyframes wave{0%,100%{transform:rotate(-112deg)}50%{transform:rotate(-100deg)}}
+
+.savebox{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--green-l);border:2px solid var(--green)}
+.savebox p{margin:0;flex:1 1 320px}
+#saveToast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--green);color:#fff;font-weight:800;padding:8px 16px;border-radius:30px;opacity:0;transition:.3s;z-index:70;pointer-events:none}
+#saveToast.show{opacity:1;transform:translate(-50%,0)}
+@media print{
+  .capsule{display:none!important}
+  nav.top,.print-btn,.prof-btn,.btns,button,.prof-banner,.savebox,#saveToast{display:none!important}
+  body.prof .solution{display:block!important}
+  body{background:#fff;font-size:12pt}
+  .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+  .hero{padding:20px 0}
+  .flip{height:auto}.flip-in{transform:none!important}.face{position:static;backface-visibility:visible;transform:none!important;margin-bottom:4px;box-shadow:none}
+}
+/* ---- éléments propres au module omnicanal ---- */
+.actors{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.actor{border-radius:18px;padding:18px;text-align:center;border:3px solid;background:#fff}
+.actor .ico{font-size:2.2rem;display:block}
+.actor h4{font-size:1.35rem;margin:6px 0}
+.actor p{margin:0}.actor small{color:var(--muted);font-weight:700}
+.a-brick{border-color:var(--green);background:var(--green-l)}
+.a-click{border-color:var(--teal);background:var(--teal-l)}
+.a-pure{border-color:var(--orange);background:var(--orange-l)}
+.strat{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.st{border-radius:18px;padding:16px;color:#fff}
+.st h4{font-size:1.4rem;margin:0 0 6px}.st p{margin:8px 0 0;font-size:.95rem}
+.s-multi{background:linear-gradient(135deg,#5b6fc7,#7b5cc4)}
+.s-cross{background:linear-gradient(135deg,#2a8c9c,#3aa3a8)}
+.s-omni{background:linear-gradient(135deg,#f0883e,#e0524b)}
+.mini{display:flex;gap:8px;align-items:center;justify-content:center;background:rgba(255,255,255,.18);border-radius:14px;padding:10px;font-size:1.6rem}
+.mini span{background:#fff;border-radius:12px;width:46px;height:46px;display:grid;place-items:center}
+.mini.hub b{font-size:1.8rem}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tool{background:var(--bg);border-radius:16px;padding:14px;text-align:center;border:2px solid var(--line)}
+.tool span{font-size:2rem;display:block}.tool b{display:block;font-family:"Baloo 2";font-size:1.1rem}
+.tool small{color:var(--muted);font-weight:700;font-size:.82rem}
+.parcours{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
+@media(max-width:640px){.parcours{grid-template-columns:1fr}}
+.pc{border-radius:18px;padding:16px;text-align:center;border:3px solid;background:#fff}
+.pc h4{font-size:1.3rem;margin:0}.pc p{margin:4px 0 10px}
+.p1{border-color:var(--yellow);background:var(--yellow-l)}.p2{border-color:var(--green);background:var(--green-l)}
+.p3{border-color:var(--teal);background:var(--teal-l)}.p4{border-color:var(--violet);background:var(--violet-l)}
+.flow{display:flex;gap:8px;justify-content:center;align-items:center}
+.flow span{width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.4rem;box-shadow:var(--shadow)}
+.flow b{color:var(--muted);font-size:1.3rem}
+/* portrait illustré */
+.author .av-face{width:46px;height:46px;border-radius:50%;border:3px solid #ffd28a;display:block;background:#fff}
+.cover .cface img{width:100%;height:100%;display:block}
+.who{align-self:center}
+.av-photo{position:relative;width:100%;aspect-ratio:1;border-radius:50%;margin-bottom:22px}
+.av-photo img{position:relative;width:100%;height:100%;border-radius:50%;display:block;box-shadow:0 12px 30px rgba(0,0,0,.4);border:4px solid rgba(255,255,255,.85);transition:transform .3s}
+.av-photo .wave{position:absolute;inset:0;border-radius:50%;border:3px solid #ffd28a;opacity:0}
+.talking .av-photo .wave{animation:ring 1.6s ease-out infinite}
+.talking .av-photo .w2{animation-delay:.8s}
+.talking .av-photo img{animation:speak 1.2s ease-in-out infinite}
+@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(1.25);opacity:0}}
+@keyframes speak{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+@media(max-width:640px){.av-photo{margin-bottom:12px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">ÉCONOMIE-GESTION · MÉTIERS DU COMMERCE ET DE LA VENTE · ACCUEIL</span><span class="author"><span id="authorAv"></span> LEGER Isabelle</span>
+    <h1>Intégrer l'omnicanal dans le processus de vente</h1>
+    <p>Magasin, site, application, réseaux sociaux… Le client passe d'un canal à l'autre : le vendeur doit l'accompagner partout. Cours, capsules vidéo, activités interactives, synthèse et quiz.</p>
+    <div class="meta"><span>🎓 Bac Pro – 1<sup>re</sup> / T<sup>le</sup></span><span>⏱️ 4 à 6 séances</span><span>🧩 8 activités + quiz</span><span>🎬 2 capsules</span></div>
+  </div>
+</header>
+
+<nav class="top">
+  <div class="wrap" id="navlinks">
+    <a href="#s0">🎯 Situation</a>
+    <a href="#s1">1 · Unités commerciales</a>
+    <a href="#s2">2 · Vers l'omnicanal</a>
+    <a href="#s3">3 · Outils de contact</a>
+    <a href="#s4">4 · Parcours client</a>
+    <a href="#s5">5 · Vendeur omnicanal</a>
+    <a href="#s7">📌 Synthèse</a>
+    <a href="#s8">🏆 Quiz</a>
+  </div>
+  <div id="progress"></div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ 0. SITUATION ============ -->
+<section id="s0">
+  <div class="card situation">
+    <div class="persona">
+      <div class="avatar">👗</div>
+      <div>
+        <span class="pill" style="background:var(--yellow);color:#6b4f00">Situation professionnelle <span class="fictif">fictive</span></span>
+        <h2 style="margin-top:6px">Bienvenue chez <em>Maison Lila</em> !</h2>
+        <p>Vous effectuez votre PFMP chez <b>Maison Lila</b>, une boutique de prêt-à-porter et d'accessoires en centre-ville. Depuis deux ans, la boutique a aussi un <b>site de vente en ligne</b> et un compte sur les réseaux sociaux.</p>
+        <p>Mme Rossi, la gérante, constate que ses clients commandent sur le site puis viennent en boutique, essaient en magasin puis achètent ailleurs en ligne, posent leurs questions par messagerie… Elle veut <b>relier tous ses canaux de vente</b> pour ne plus perdre de clients.</p>
+        <p style="margin-bottom:0"><b>Votre mission :</b> l'aider à <b>intégrer l'omnicanal</b> dans le processus de vente de la boutique.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card savebox">
+    <p>💾 <b>Vos réponses sont enregistrées automatiquement</b> sur cet ordinateur, dans ce navigateur. Vous les retrouverez en revenant sur la page avec le même poste et le même navigateur.</p>
+    <button class="b-sol" id="clearMine">🗑️ Effacer mes réponses</button>
+  </div>
+  <div class="card">
+    <h3>🎯 Objectifs de la séquence</h3>
+    <ul class="check-list">
+      <li>Distinguer les unités commerciales physiques et virtuelles, et les biens des services.</li>
+      <li>Identifier les acteurs : brick and mortar, pure player, click and mortar.</li>
+      <li>Différencier multicanal, cross-canal et omnicanal.</li>
+      <li>Choisir l'outil de contact adapté à une situation, dans le respect des règles.</li>
+      <li>Reconnaître les parcours client : click and collect, web to store, showrooming, web in store.</li>
+      <li>Adapter son comportement de vendeur au parcours omnicanal du client.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 1. UNITÉS COMMERCIALES ============ -->
+<section id="s1">
+  <div class="sec-head"><div class="num">1</div><h2>Les unités commerciales physiques et virtuelles<small>Où le client accède-t-il à l'offre ?</small></h2></div>
+
+  <div class="card">
+    <div class="def"><b>Unité commerciale (UC) :</b> lieu <b>physique</b> ou <b>virtuel</b> permettant à un client d'accéder à une offre de produits.</div>
+    <div class="grid g2">
+      <div class="forme f3"><h4>📦 Les biens</h4><p>Produits <b>tangibles</b> : on peut les voir, les toucher, les stocker.</p><p><i>Ex. : une veste, un sac, un téléphone.</i></p></div>
+      <div class="forme f2"><h4>🤝 Les services</h4><p>Produits <b>intangibles</b> : on ne peut pas les toucher ni les stocker.</p><p><i>Ex. : une retouche, une livraison, un abonnement.</i></p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Deux types d'unités commerciales complémentaires</h3>
+    <div class="tscroll"><table>
+      <tr><th></th><th>🏪 UC physique (magasin)</th><th>💻 UC virtuelle (site, application)</th></tr>
+      <tr><td><b>Points forts</b></td><td>Contact commercial humain et conseil ; le client voit, touche et essaie le produit ; il repart immédiatement avec.</td><td>Accessible 24 h/24, 7 j/7 ; pas de déplacement ; offre souvent plus large ; comparaison facile.</td></tr>
+      <tr><td><b>Limites</b></td><td>Horaires d'ouverture ; déplacement nécessaire ; place limitée pour le stock.</td><td>Pas de contact physique avec le produit ; délais et frais de livraison possibles ; retours.</td></tr>
+    </table></div>
+    <div class="retenir">Les deux UC sont <b>complémentaires</b> : la virtuelle est accessible à tout moment sans se déplacer ; la physique apporte le contact humain et la possibilité de voir et de manipuler le produit.</div>
+  </div>
+
+  <div class="card">
+    <h3>Trois types d'acteurs</h3>
+    <div class="actors">
+      <div class="actor a-brick"><span class="ico">🏪</span><h4>Brick and mortar</h4><p>Vend <b>uniquement en magasin</b> physique.</p><small>« brique et mortier »</small></div>
+      <div class="actor a-click"><span class="ico">🏪 + 💻</span><h4>Click and mortar</h4><p>Combine <b>magasin(s) et vente en ligne</b>.</p><small>« clic et mortier »</small></div>
+      <div class="actor a-pure"><span class="ico">💻</span><h4>Pure player</h4><p>Vend <b>uniquement en ligne</b>.</p><small>« acteur pur internet »</small></div>
+    </div>
+    <div class="grid g4" style="margin-top:18px">
+      <div class="chiffre"><strong>196,4 Md€</strong><span>dépensés en ligne en France en 2025</span></div>
+      <div class="chiffre"><strong>+7 %</strong><span>par rapport à 2024</span></div>
+      <div class="chiffre"><strong>3,2 milliards</strong><span>de transactions en ligne</span></div>
+      <div class="chiffre"><strong>62 €</strong><span>de panier moyen</span></div>
+    </div>
+    <p class="src">Source : Fevad, bilan du e-commerce en France en 2025, publié le 11 février 2026 (<a href="https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/" target="_blank" rel="noopener">fevad.com</a>). Ces montants regroupent les produits et les services. La Fevad estime la part du e-commerce à environ 12 % des ventes de produits du commerce de détail.</p>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 1 – Quel type d'acteur ?</h3>
+    <span class="pill act-tag">Repérer</span>
+    <p class="consigne">Classez chaque entreprise <span class="fictif">exemples fictifs</span>.</p>
+    <div class="exo" id="exo1">
+      <div class="row"><p>1. Un fleuriste de quartier qui vend uniquement dans sa boutique, sans site internet.</p><select data-answer="brick"></select></div>
+      <div class="row"><p>2. Une entreprise qui vend des lunettes uniquement sur son site et son application.</p><select data-answer="pure"></select></div>
+      <div class="row"><p>3. Une enseigne de bricolage qui possède des magasins et un site marchand.</p><select data-answer="click"></select></div>
+      <div class="row"><p>4. Une plateforme de réservation de voyages accessible seulement en ligne.</p><select data-answer="pure"></select></div>
+      <div class="row"><p>5. Une boulangerie sans site, qui vend uniquement au comptoir.</p><select data-answer="brick"></select></div>
+      <div class="row"><p>6. Maison Lila : une boutique en centre-ville et un site de vente en ligne.</p><select data-answer="click"></select></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo1">Vérifier</button><button class="b-sol prof-only" data-sol="exo1">Correction</button><span class="score" id="score-exo1"></span></div>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 2 – Bien ou service ?</h3>
+    <span class="pill act-tag">Classer</span>
+    <p class="consigne">Ce produit est-il un bien (tangible) ou un service (intangible) ?</p>
+    <div class="exo" id="exo2">
+      <div class="row"><p>1. Une paire de baskets</p><select data-answer="bien"></select></div>
+      <div class="row"><p>2. La retouche d'un pantalon</p><select data-answer="serv"></select></div>
+      <div class="row"><p>3. Un abonnement à une plateforme de musique en ligne</p><select data-answer="serv"></select></div>
+      <div class="row"><p>4. Un sac à main</p><select data-answer="bien"></select></div>
+      <div class="row"><p>5. La livraison à domicile d'une commande</p><select data-answer="serv"></select></div>
+      <div class="row"><p>6. Une séance chez le coiffeur</p><select data-answer="serv"></select></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo2">Vérifier</button><button class="b-sol prof-only" data-sol="exo2">Correction</button><span class="score" id="score-exo2"></span></div>
+  </div>
+</section>
+
+<!-- ============ 2. VERS L'OMNICANAL ============ -->
+<section id="s2">
+  <div class="sec-head"><div class="num" style="background:var(--violet)">2</div><h2>Du multicanal à l'omnicanal<small>Relier tous les canaux de vente</small></h2></div>
+  <div class="capsule" data-capsule="omni"></div>
+
+  <div class="card">
+    <div class="def"><b>Canal de vente :</b> moyen par lequel le client peut acheter (magasin, site internet, application mobile, téléphone, réseaux sociaux…).</div>
+    <div class="strat">
+      <div class="st s-multi">
+        <h4>Multicanal</h4>
+        <div class="mini"><span>🏪</span><span>💻</span><span>📱</span></div>
+        <p>L'entreprise utilise <b>plusieurs canaux</b>, mais ils fonctionnent <b>séparément</b> : stocks, prix ou fichiers clients ne sont pas forcément partagés.</p>
+      </div>
+      <div class="st s-cross">
+        <h4>Cross-canal</h4>
+        <div class="mini"><span>💻</span><b>➜</b><span>🏪</span></div>
+        <p>Les canaux sont <b>complémentaires</b> : le client en utilise <b>plusieurs pour un même achat</b> (ex. : réserver en ligne, payer en magasin).</p>
+      </div>
+      <div class="st s-omni">
+        <h4>Omnicanal</h4>
+        <div class="mini hub"><span>🏪</span><span>💻</span><b>🔄</b><span>📱</span><span>💬</span></div>
+        <p>Tous les canaux sont <b>reliés entre eux</b> : mêmes stocks, mêmes informations client. Le client passe de l'un à l'autre <b>sans rupture</b>.</p>
+      </div>
+    </div>
+    <div class="retenir">L'omnicanal place le <b>client au centre</b> : quel que soit le canal utilisé, il est reconnu et retrouve les mêmes informations (commandes, fidélité, disponibilité des produits). On parle aussi de commerce <b>« phygital »</b> quand le numérique entre dans le magasin physique (bornes, tablettes, écrans).</div>
+    <p class="src">Les définitions de multicanal, cross-canal et omnicanal peuvent légèrement varier selon les manuels ; celles-ci correspondent à l'usage le plus courant en cours de vente.</p>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 3 – Quelle stratégie ?</h3>
+    <span class="pill act-tag">Analyser</span>
+    <p class="consigne">Identifiez la stratégie de distribution de chaque entreprise.</p>
+    <div class="exo" id="exo3">
+      <div class="row"><p>1. Un commerçant vend uniquement dans son magasin.</p><select data-answer="mono"></select></div>
+      <div class="row"><p>2. Une enseigne a un magasin et un site, mais ils ne partagent ni les stocks ni le fichier client : un article acheté en ligne ne peut pas être rendu en magasin.</p><select data-answer="multi"></select></div>
+      <div class="row"><p>3. Le client réserve un article en ligne, puis vient le payer et le récupérer en magasin.</p><select data-answer="cross"></select></div>
+      <div class="row"><p>4. Le vendeur voit sur sa tablette l'historique web et magasin du client et les stocks de tous les canaux ; le client commence son achat sur l'appli et le termine en boutique sans rien ressaisir.</p><select data-answer="omni"></select></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo3">Vérifier</button><button class="b-sol prof-only" data-sol="exo3">Correction</button><span class="score" id="score-exo3"></span></div>
+  </div>
+</section>
+
+<!-- ============ 3. OUTILS DE CONTACT ============ -->
+<section id="s3">
+  <div class="sec-head"><div class="num" style="background:var(--yellow);color:#6b4f00">3</div><h2>Les outils de contact de la relation omnicanale<small>Rester en lien avec le client, partout</small></h2></div>
+  <div class="card">
+    <div class="tools">
+      <div class="tool"><span>🧑‍🤝‍🧑</span><b>Face-à-face</b><small>Conseil, essai, relation humaine</small></div>
+      <div class="tool"><span>📞</span><b>Téléphone</b><small>Échange direct, sans se déplacer</small></div>
+      <div class="tool"><span>📧</span><b>E-mail</b><small>Messages détaillés, documents, factures</small></div>
+      <div class="tool"><span>📲</span><b>SMS</b><small>Message court et rapide</small></div>
+      <div class="tool"><span>💬</span><b>Messagerie instantanée</b><small>Échange rapide, photos</small></div>
+      <div class="tool"><span>❤️</span><b>Réseaux sociaux</b><small>Image, nouveautés, communauté</small></div>
+      <div class="tool"><span>🤖</span><b>Chat / chatbot</b><small>Réponses sur le site, même le soir</small></div>
+      <div class="tool"><span>🖥️</span><b>Borne / tablette</b><small>Numérique dans le magasin</small></div>
+    </div>
+    <div class="retenir">Chaque outil a ses forces : le vendeur choisit celui qui convient au <b>message</b> (court ou détaillé), à l'<b>urgence</b>, et aux <b>préférences du client</b>.</div>
+    <div class="attention"><b>⚖️ Ce que dit la règle :</b> pour envoyer de la <b>prospection commerciale</b> par e-mail ou SMS à un particulier, il faut son <b>consentement préalable</b> (case non pré-cochée). Exception : un client qui a déjà acheté peut recevoir des offres pour des produits analogues de la même entreprise. Chaque message doit identifier l'expéditeur et permettre de se désinscrire simplement. <span class="src">Source : <a href="https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique" target="_blank" rel="noopener">CNIL</a>.</span></div>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 4 – Le bon outil pour la bonne situation</h3>
+    <span class="pill act-tag">Choisir · Justifier</span>
+    <p class="consigne">Quel outil de contact est le plus adapté ? Soyez prêt à justifier votre choix à l'oral.</p>
+    <div class="exo" id="exo4">
+      <div class="row"><p>1. Prévenir rapidement une cliente, sur son portable, que sa commande est prête.</p><select data-answer="sms"></select></div>
+      <div class="row"><p>2. Conseiller un client qui veut essayer plusieurs tailles de veste.</p><select data-answer="face"></select></div>
+      <div class="row"><p>3. Envoyer la facture et le récapitulatif détaillé d'une commande en ligne.</p><select data-answer="mail"></select></div>
+      <div class="row"><p>4. Répondre à 22 h à une question simple sur les délais de livraison posée sur le site.</p><select data-answer="chat"></select></div>
+      <div class="row"><p>5. Présenter la nouvelle collection en photos et vidéos à un large public.</p><select data-answer="rs"></select></div>
+      <div class="row"><p>6. Un client âgé veut savoir, sans se déplacer, si un article est disponible, et en parler avec quelqu'un.</p><select data-answer="tel"></select></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo4">Vérifier</button><button class="b-sol prof-only" data-sol="exo4">Correction</button><span class="score" id="score-exo4"></span></div>
+  </div>
+</section>
+
+<!-- ============ 4. PARCOURS CLIENT ============ -->
+<section id="s4">
+  <div class="sec-head"><div class="num" style="background:var(--orange)">4</div><h2>Le parcours du client<small>Comment le client passe d'un canal à l'autre</small></h2></div>
+  <div class="capsule" data-capsule="parcours"></div>
+
+  <div class="card">
+    <div class="def"><b>Parcours client :</b> ensemble des étapes suivies par le client, <b>avant</b> l'achat (recherche d'informations), <b>pendant</b> l'achat et <b>après</b> l'achat (retrait, livraison, service après-vente, avis).</div>
+    <div class="parcours">
+      <div class="pc p1"><h4>Click and collect</h4><p>Achat en ligne <b>+</b> retrait en magasin</p><div class="flow"><span>🛒</span><span>💻</span><b>➜</b><span>🛍️</span><span>🏪</span></div></div>
+      <div class="pc p2"><h4>Showrooming</h4><p>Recherche en magasin <b>+</b> achat en ligne</p><div class="flow"><span>🔍</span><span>🏪</span><b>➜</b><span>🛒</span><span>💻</span></div></div>
+      <div class="pc p3"><h4>Web in store</h4><p>Achat en ligne <b>dans</b> le magasin</p><div class="flow"><span>🛒</span><span>💻</span><span>🏪</span></div></div>
+      <div class="pc p4"><h4>Web to store</h4><p>Recherche en ligne <b>+</b> achat en magasin</p><div class="flow"><span>🔍</span><span>💻</span><b>➜</b><span>🛒</span><span>🏪</span></div></div>
+    </div>
+    <div class="retenir">Le <b>showrooming</b> est un risque pour le magasin : le client peut acheter <b>chez un concurrent</b> en ligne. Le vendeur doit donc donner envie d'acheter sur place (conseil, service, disponibilité immédiate) ou proposer le site de l'enseigne.</div>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 5 – Quel parcours ?</h3>
+    <span class="pill act-tag">Identifier</span>
+    <p class="consigne">Identifiez le parcours suivi par chaque client.</p>
+    <div class="exo" id="exo5">
+      <div class="row"><p>1. Inès commande un jean sur le site de Maison Lila et passe le récupérer en boutique le lendemain.</p><select data-answer="cc"></select></div>
+      <div class="row"><p>2. Karim essaie des chaussures en magasin, puis les achète sur un site internet depuis chez lui.</p><select data-answer="show"></select></div>
+      <div class="row"><p>3. En boutique, la taille de Léa est épuisée : la vendeuse commande l'article pour elle sur la tablette du magasin.</p><select data-answer="wis"></select></div>
+      <div class="row"><p>4. Tom compare les avis et les prix en ligne, puis va acheter le casque en magasin.</p><select data-answer="wts"></select></div>
+      <div class="row"><p>5. Sur la borne interactive du magasin, Emma commande un modèle disponible seulement sur le site.</p><select data-answer="wis"></select></div>
+      <div class="row"><p>6. Nadia paie en ligne un panier de courses et vient le chercher au point de retrait du magasin.</p><select data-answer="cc"></select></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo5">Vérifier</button><button class="b-sol prof-only" data-sol="exo5">Correction</button><span class="score" id="score-exo5"></span></div>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 6 – Remettre le parcours dans l'ordre</h3>
+    <span class="pill act-tag">Ordonner</span>
+    <p class="consigne">Voici le parcours click and collect de Julien chez Maison Lila. Numérotez les étapes de 1 à 6.</p>
+    <div class="exo" id="exo6">
+      <div class="row"><p>Julien reçoit un SMS : sa commande est prête.</p><select data-answer="3"></select></div>
+      <div class="row"><p>Julien choisit une chemise sur le site et paie en ligne.</p><select data-answer="1"></select></div>
+      <div class="row"><p>Au retrait, la vendeuse lui propose une ceinture assortie.</p><select data-answer="5"></select></div>
+      <div class="row"><p>La vendeuse prépare la commande et vérifie l'article.</p><select data-answer="2"></select></div>
+      <div class="row"><p>Quelques jours plus tard, Julien reçoit un questionnaire de satisfaction par e-mail.</p><select data-answer="6"></select></div>
+      <div class="row"><p>Julien se présente en boutique avec son numéro de commande.</p><select data-answer="4"></select></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo6">Vérifier</button><button class="b-sol prof-only" data-sol="exo6">Correction</button><span class="score" id="score-exo6"></span></div>
+  </div>
+</section>
+
+<!-- ============ 5. VENDEUR OMNICANAL ============ -->
+<section id="s5">
+  <div class="sec-head"><div class="num" style="background:var(--green)">5</div><h2>Le vendeur, au cœur de l'omnicanal<small>Le vendeur « connecté »</small></h2></div>
+  <div class="card">
+    <p>Le vendeur en magasin reste <b>l'élément central</b> du magasin par rapport au site internet. Il doit <b>adapter son comportement au parcours client</b> et se tenir informé grâce aux outils connectés.</p>
+    <div class="grid g3">
+      <div class="forme f3"><h4>📱 Ses outils</h4><ul><li>Smartphone</li><li>Tablette</li><li>Borne magasin</li><li>Logiciel de caisse relié au site</li></ul></div>
+      <div class="forme f2"><h4>🔎 Ce qu'il suit</h4><ul><li>Les différents contacts du client</li><li>Les commandes</li><li>Les retours produits</li><li>Les <b>stocks magasin et web</b></li></ul></div>
+      <div class="forme f1"><h4>🤝 Ce qu'il fait</h4><ul><li>Aide à créer un compte client</li><li>Commande un article absent du magasin</li><li>Prépare et remet le click and collect</li><li>Propose des ventes additionnelles</li></ul></div>
+    </div>
+    <div class="attention"><b>⚖️ Bon à savoir :</b> pour un achat <b>à distance</b> (internet, téléphone, catalogue), le client dispose d'un <b>droit de rétractation d'au moins 14 jours calendaires</b>. Pour un bien, le délai démarre le lendemain de la réception. <span class="src">Source : <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F10485" target="_blank" rel="noopener">service-public.gouv.fr</a> (page vérifiée le 1<sup>er</sup> janvier 2026).</span></div>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 7 – Le click and collect, ça rapporte ?</h3>
+    <span class="pill act-tag">Calculer</span>
+    <div class="doc"><h4>📊 Maison Lila – mois de mars <span class="fictif">données fictives</span></h4>
+      Commandes click and collect passées : <b>240</b> · Commandes jamais retirées : <b>15</b><br>
+      Parmi les clients venus retirer leur commande, <b>40 %</b> achètent un article supplémentaire en boutique, pour <b>28 €</b> en moyenne.</div>
+    <div class="exo" id="exo7">
+      <div class="row"><p>a) Nombre de commandes retirées</p><input type="number" data-answer="225"></div>
+      <div class="row"><p>b) Taux de retrait (%)</p><input type="number" step="0.01" data-answer="93.75"></div>
+      <div class="row"><p>c) Nombre de clients ayant fait un achat supplémentaire</p><input type="number" data-answer="90"></div>
+      <div class="row"><p>d) Chiffre d'affaires supplémentaire réalisé en boutique (€)</p><input type="number" data-answer="2520"></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo7">Vérifier</button><button class="b-sol prof-only" data-sol="exo7" data-target="sol7">Correction</button><span class="score" id="score-exo7"></span></div>
+    <div class="solution" id="sol7">
+      a) 240 − 15 = <b>225</b> commandes retirées<br>
+      b) 225 ÷ 240 × 100 = <b>93,75 %</b><br>
+      c) 225 × 40 % = <b>90</b> clients<br>
+      d) 90 × 28 = <b>2 520 €</b><br>
+      <i>Analyse :</i> le click and collect fait venir les clients en boutique, ce qui crée des occasions de vente additionnelle. Le vendeur a un rôle clé au moment du retrait.</div>
+  </div>
+
+  <div class="card activite">
+    <h3>Activité 8 – Bonne pratique ou à éviter ?</h3>
+    <span class="pill act-tag">Adopter la bonne posture</span>
+    <p class="consigne">Pour chaque attitude du vendeur, indiquez s'il s'agit d'une bonne pratique omnicanale.</p>
+    <div class="exo" id="exo8">
+      <div class="row"><p>1. Accueillir rapidement le client du click and collect et vérifier l'article avec lui.</p><select data-answer="ok"></select></div>
+      <div class="row"><p>2. Dire à un client que l'article n'existe plus, sans consulter le stock du site.</p><select data-answer="no"></select></div>
+      <div class="row"><p>3. Proposer de créer un compte client pour suivre ses commandes, en expliquant à quoi serviront ses données.</p><select data-answer="ok"></select></div>
+      <div class="row"><p>4. Inscrire un client à la lettre d'information par e-mail sans lui demander son accord.</p><select data-answer="no"></select></div>
+      <div class="row"><p>5. Accepter en boutique le retour d'un article acheté en ligne, si la politique de l'enseigne le prévoit.</p><select data-answer="ok"></select></div>
+      <div class="row"><p>6. Ignorer un client qui compare les prix sur son téléphone en rayon.</p><select data-answer="no"></select></div>
+    </div>
+    <div class="btns"><button class="b-check prof-only" data-exo="exo8">Vérifier</button><button class="b-sol prof-only" data-sol="exo8">Correction</button><span class="score" id="score-exo8"></span></div>
+  </div>
+
+  <div class="card activite">
+    <h3>Mission de synthèse – Le plan omnicanal de Maison Lila</h3>
+    <span class="pill act-tag">Rédiger · Oral</span>
+    <p class="consigne">Rédigez une note de 15 lignes (ou préparez un oral de 3 minutes) pour Mme Rossi.</p>
+    <ol>
+      <li>Présentez le type d'acteur qu'est Maison Lila et sa stratégie actuelle (multicanal, cross-canal ou omnicanal ?).</li>
+      <li>Proposez deux parcours client à développer, en expliquant l'intérêt pour la boutique.</li>
+      <li>Proposez deux outils de contact adaptés à la clientèle, en respectant la règle du consentement.</li>
+      <li>Expliquez comment le vendeur doit adapter son comportement (au moins 3 actions concrètes).</li>
+    </ol>
+    <p class="src">Critères d'évaluation suggérés : utilisation du vocabulaire · pertinence des propositions · respect de la réglementation · qualité de l'expression.</p>
+  </div>
+</section>
+
+<!-- ============ 7. SYNTHÈSE ============ -->
+<section id="s7">
+  <div class="sec-head"><div class="num" style="background:var(--ink)">📌</div><h2>Synthèse<small>L'essentiel à retenir</small></h2></div>
+  <div class="center-title">INTÉGRER L'OMNICANAL DANS LE PROCESSUS DE VENTE</div>
+  <div class="map">
+    <div class="b" style="border-color:var(--teal)"><h4>🏪💻 Unités commerciales</h4><ul><li>Lieu physique ou virtuel donnant accès à une offre</li><li>Biens (tangibles) / services (intangibles)</li><li>Complémentaires : 24 h/24 vs contact humain</li></ul></div>
+    <div class="b" style="border-color:var(--violet)"><h4>🏷️ Les acteurs</h4><ul><li><b>Brick and mortar</b> : magasin uniquement</li><li><b>Pure player</b> : en ligne uniquement</li><li><b>Click and mortar</b> : les deux</li></ul></div>
+    <div class="b" style="border-color:var(--orange)"><h4>🔄 Les stratégies</h4><ul><li><b>Multicanal</b> : canaux séparés</li><li><b>Cross-canal</b> : plusieurs canaux pour un achat</li><li><b>Omnicanal</b> : canaux reliés, client au centre</li></ul></div>
+    <div class="b" style="border-color:var(--yellow)"><h4>💬 Outils de contact</h4><ul><li>Face-à-face, téléphone, e-mail, SMS</li><li>Messagerie, réseaux sociaux, chatbot, borne</li><li>Prospection e-mail/SMS : consentement préalable</li></ul></div>
+    <div class="b" style="border-color:var(--red)"><h4>🧭 Parcours client</h4><ul><li><b>Click and collect</b> : achat en ligne + retrait magasin</li><li><b>Showrooming</b> : recherche magasin + achat en ligne</li><li><b>Web in store</b> : achat en ligne dans le magasin</li><li><b>Web to store</b> : recherche en ligne + achat magasin</li></ul></div>
+    <div class="b" style="border-color:var(--green)"><h4>🧑‍💼 Le vendeur connecté</h4><ul><li>Élément central, s'adapte au parcours</li><li>Outils : smartphone, tablette, borne</li><li>Suit contacts, commandes, retours</li><li>Crée des comptes, accède aux stocks magasin et web</li></ul></div>
+  </div>
+  <div class="card" style="margin-top:22px">
+    <h3>🃏 Lexique – cliquez pour retourner les cartes</h3>
+    <div class="grid g4" id="flips"></div>
+  </div>
+</section>
+
+<!-- ============ 8. QUIZ ============ -->
+<section id="s8">
+  <div class="sec-head"><div class="num" style="background:var(--violet)">🏆</div><h2>Quiz final<small>12 questions pour vérifier vos acquis</small></h2></div>
+  <div class="card" id="quiz"></div>
+  <div class="card" style="text-align:center">
+    <button class="b-check" id="quizBtn" style="font-size:1.1rem;padding:12px 26px">Valider mes réponses</button>
+    <button class="b-reset" id="quizReset">Recommencer</button>
+    <p id="quizScore"></p>
+  </div>
+</section>
+
+<!-- ============ ESPACE ENSEIGNANT ============ -->
+<section id="prof" class="prof-only">
+  <div class="sec-head"><div class="num" style="background:var(--ink)">🔒</div><h2>Espace enseignant<small>Visible uniquement après saisie du code</small></h2></div>
+  <div class="card prof-zone">
+    <h3>⚙️ Outils</h3>
+    <div class="btns">
+      <button class="b-check" id="allSol">Afficher toutes les corrections dans la page</button>
+      <button class="b-sol" onclick="window.print()">Imprimer la version corrigée</button>
+      <button class="b-sol" id="resetAll">Effacer toutes les réponses</button>
+      <button class="b-reset" id="logout">Quitter le mode enseignant</button>
+    </div>
+    <p class="src">En mode enseignant, les boutons « Vérifier » et « Correction » apparaissent sous chaque activité. Les corrections affichées ne sont jamais enregistrées dans les réponses de l'élève.</p>
+  </div>
+  <div class="card prof-zone">
+    <h3>🗓️ Déroulé proposé (indicatif)</h3>
+    <div class="tscroll"><table>
+      <tr><th>Séance</th><th>Contenu</th><th>Activités</th></tr>
+      <tr><td>1</td><td>Situation + unités commerciales et acteurs</td><td>Activités 1 et 2</td></tr>
+      <tr><td>2</td><td>Multicanal, cross-canal, omnicanal (capsule 1)</td><td>Activité 3</td></tr>
+      <tr><td>3</td><td>Les outils de contact + règle du consentement</td><td>Activité 4</td></tr>
+      <tr><td>4</td><td>Les parcours client (capsule 2)</td><td>Activités 5 et 6</td></tr>
+      <tr><td>5</td><td>Le vendeur connecté</td><td>Activités 7 et 8</td></tr>
+      <tr><td>6</td><td>Mission de synthèse + quiz</td><td>Synthèse, lexique, quiz</td></tr>
+    </table></div>
+    <p class="src">Ce découpage est une proposition à adapter à votre progression.</p>
+  </div>
+  <div class="card prof-zone">
+    <h3>✅ Corrigé des activités à choix</h3>
+    <div id="corrSelects"></div>
+    <p class="src">Activité 4 : d'autres réponses peuvent se justifier à l'oral (ex. : e-mail pour prévenir que la commande est prête). L'essentiel est l'argumentation.</p>
+  </div>
+  <div class="card prof-zone">
+    <h3>✅ Corrigé de l'activité de calcul</h3>
+    <ul><li><b>Activité 7 :</b> 225 · 93,75 % · 90 clients · 2 520 €</li></ul>
+  </div>
+  <div class="card prof-zone">
+    <h3>✅ Corrigé du quiz</h3>
+    <ol class="corr-list" id="corrQuiz"></ol>
+  </div>
+  <div class="card prof-zone">
+    <h3>📝 Éléments attendus – mission de synthèse</h3>
+    <ul>
+      <li><b>Acteur :</b> click and mortar (boutique + site). Stratégie actuelle plutôt multicanale si les canaux ne sont pas reliés ; objectif : l'omnicanal.</li>
+      <li><b>Parcours :</b> click and collect (fait venir en boutique, ventes additionnelles), web to store (attirer par le site et les réseaux sociaux), web in store (ne pas perdre la vente quand la taille manque).</li>
+      <li><b>Outils :</b> SMS pour prévenir du retrait, réseaux sociaux pour les nouveautés, chat sur le site… avec le consentement préalable pour la prospection par e-mail ou SMS.</li>
+      <li><b>Vendeur :</b> consulter les stocks web, commander pour le client, accueillir le click and collect, proposer la création de compte, accepter les retours selon la politique de l'enseigne, conseiller le client qui compare en ligne.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<div class="modal" id="codeModal">
+  <div class="modal-box">
+    <h3 style="color:var(--ink)">🔒 Espace enseignant</h3>
+    <p style="margin:0">Saisissez le code d'accès.</p>
+    <input type="password" id="codeInput" autocomplete="off" aria-label="Code enseignant">
+    <p id="codeMsg"></p>
+    <div class="btns" style="justify-content:center">
+      <button class="b-check" id="codeOk">Valider</button>
+      <button class="b-sol" id="codeCancel">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <h3 style="color:#fff">Sources</h3>
+    <ul class="sources">
+      <li>Fevad, « Bilan du e-commerce en France : les Français ont dépensé près de 200 milliards d'euros sur internet en 2025 », 11 février 2026 : <a href="https://www.fevad.com/bilan-du-e-commerce-en-france-les-francais-ont-depense-pres-de-200-milliards-deuros-sur-internet-en-2025/" target="_blank" rel="noopener">fevad.com</a></li>
+      <li>CNIL, « La prospection commerciale par courrier électronique » : <a href="https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique" target="_blank" rel="noopener">cnil.fr</a></li>
+      <li>Service-public.gouv.fr, droit de rétractation pour un achat à distance (fiche F10485, vérifiée le 1<sup>er</sup> janvier 2026) : <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F10485" target="_blank" rel="noopener">service-public.gouv.fr</a></li>
+      <li>Fiche de synthèse « Intégrer l'omnicanal dans le processus de vente », Mission 1, éditions Fontaine Picard (document de la classe) – structure et définitions du cours.</li>
+    </ul>
+    <p>⚠️ Maison Lila, ses clients et ses chiffres sont <b>fictifs</b> et créés pour les activités.</p>
+  </div>
+</footer>
+
+<div id="saveToast">💾 Réponse enregistrée</div>
+<button class="print-btn" onclick="window.print()">🖨️ Imprimer</button>
+<button class="prof-btn" id="profBtn">🔒 Espace enseignant</button>
+
+<script>
+/* ---------- options des listes ---------- */
+const OPTS={
+  exo1:[["brick","Brick and mortar"],["pure","Pure player"],["click","Click and mortar"]],
+  exo2:[["bien","Bien (tangible)"],["serv","Service (intangible)"]],
+  exo3:[["mono","Monocanal (un seul canal)"],["multi","Multicanal"],["cross","Cross-canal"],["omni","Omnicanal"]],
+  exo4:[["face","Face-à-face en magasin"],["tel","Téléphone"],["mail","E-mail"],["sms","SMS"],["rs","Réseaux sociaux"],["chat","Chat / chatbot du site"]],
+  exo5:[["cc","Click and collect"],["show","Showrooming"],["wis","Web in store"],["wts","Web to store"]],
+  exo6:[["1","Étape 1"],["2","Étape 2"],["3","Étape 3"],["4","Étape 4"],["5","Étape 5"],["6","Étape 6"]],
+  exo8:[["ok","✅ Bonne pratique"],["no","❌ À éviter"]]
+};
+document.querySelectorAll(".exo").forEach(ex=>{
+  const o=OPTS[ex.id]; if(!o) return;
+  ex.querySelectorAll("select").forEach(s=>{
+    s.innerHTML='<option value="">— Choisir —</option>'+o.map(([v,t])=>`<option value="${v}">${t}</option>`).join("");
+  });
+});
+
+/* ---------- lexique ---------- */
+const LEX=[
+  ["Unité commerciale","Lieu physique ou virtuel permettant à un client d'accéder à une offre de produits."],
+  ["Brick and mortar","Entreprise qui vend uniquement en magasin physique."],
+  ["Pure player","Entreprise qui vend uniquement en ligne."],
+  ["Click and mortar","Entreprise qui combine magasin(s) et vente en ligne."],
+  ["Multicanal","Plusieurs canaux de vente qui fonctionnent séparément."],
+  ["Cross-canal","Le client utilise plusieurs canaux complémentaires pour un même achat."],
+  ["Omnicanal","Tous les canaux sont reliés (stocks, données client) : le client passe de l'un à l'autre sans rupture."],
+  ["Phygital","Mélange du physique et du digital : outils numériques dans le magasin (bornes, tablettes, écrans)."],
+  ["Click and collect","Achat en ligne, puis retrait de la commande en magasin."],
+  ["Showrooming","Recherche et essai en magasin, puis achat en ligne."],
+  ["Web to store","Recherche en ligne, puis achat en magasin."],
+  ["Web in store","Achat en ligne réalisé dans le magasin (borne, tablette du vendeur)."]
+];
+document.getElementById("flips").innerHTML=LEX.map(([a,b])=>`<div class="flip" onclick="this.classList.toggle('on')"><div class="flip-in"><div class="face front">${a}</div><div class="face back">${b}</div></div></div>`).join("");
+
+/* ---------- quiz ---------- */
+const QUIZ=[
+  ["Un pure player est une entreprise qui vend :",["Uniquement en magasin","Uniquement en ligne","En magasin et en ligne"],1,"Pure player = acteur 100 % internet."],
+  ["Une enseigne qui a des magasins et un site marchand est un :",["Brick and mortar","Pure player","Click and mortar"],2,"Click and mortar : « clic » (internet) + « mortier » (magasin)."],
+  ["Une retouche de vêtement est :",["Un bien tangible","Un service intangible","Un canal de vente"],1,"On ne peut ni toucher ni stocker une retouche : c'est un service."],
+  ["Recherche en ligne puis achat en magasin, c'est le :",["Web to store","Showrooming","Click and collect"],0,"Web to store : du web vers le magasin."],
+  ["Essai en magasin puis achat en ligne, c'est le :",["Web in store","Showrooming","Web to store"],1,"Le magasin sert de « salle d'exposition » (showroom)."],
+  ["Commander sur une borne dans le magasin, c'est le :",["Web in store","Click and collect","Brick and mortar"],0,"Achat en ligne réalisé à l'intérieur du magasin."],
+  ["Dans une stratégie omnicanale :",["Chaque canal a ses propres stocks et clients","Tous les canaux sont reliés et partagent les informations","L'entreprise n'a qu'un seul canal"],1,"Omnicanal : canaux interconnectés, client au centre."],
+  ["Principal avantage de l'unité commerciale virtuelle :",["Le contact humain","Accessible 24 h/24 sans se déplacer","Essayer le produit"],1,"Le site est ouvert en permanence et évite le déplacement."],
+  ["Principal avantage de l'unité commerciale physique :",["Voir, toucher le produit et être conseillé","Ouverte la nuit","Aucun frais de personnel"],0,"Le magasin permet le contact humain et la manipulation du produit."],
+  ["Pour envoyer une offre commerciale par e-mail à un particulier qui n'est pas client :",["Aucune autorisation n'est nécessaire","Il faut son consentement préalable","Il suffit d'une case pré-cochée"],1,"Règle CNIL : consentement préalable ; les cases pré-cochées sont interdites."],
+  ["Pour un achat en ligne, le délai légal de rétractation est d'au moins :",["7 jours","14 jours","30 jours"],1,"14 jours calendaires minimum pour un achat à distance."],
+  ["180 commandes retirées sur 200 passées : le taux de retrait est de :",["80 %","90 %","95 %"],1,"180 ÷ 200 × 100 = 90 %."]
+];
+const qz=document.getElementById("quiz");
+qz.innerHTML=QUIZ.map((q,i)=>`<div class="q" id="q${i}"><p>${i+1}. ${q[0]}</p>${q[1].map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${o}</label>`).join("")}<div class="expl">💬 ${q[3]}</div></div>`).join("");
+document.getElementById("quizBtn").onclick=()=>{
+  let s=0; QUIZ.forEach((q,i)=>{const c=document.querySelector(`input[name=q${i}]:checked`);const g=c&&+c.value===q[2];
+    const el=document.getElementById("q"+i); el.classList.toggle("ok",!!g); el.classList.toggle("ko",!g); if(g) s++;});
+  const m=s>=10?"🏆 Excellent !":s>=7?"👍 Bien joué, revoyez les erreurs.":"📚 Relisez la synthèse et retentez !";
+  document.getElementById("quizScore").textContent=`Score : ${s} / ${QUIZ.length} — ${m}`;
+};
+document.getElementById("quizReset").onclick=()=>{qz.querySelectorAll("input").forEach(i=>i.checked=false);qz.querySelectorAll(".q").forEach(q=>q.classList.remove("ok","ko"));document.getElementById("quizScore").textContent="";};
+
+/* ---------- vérification ---------- */
+function check(id){
+  const ex=document.getElementById(id); let ok=0,n=0;
+  ex.querySelectorAll(".row").forEach(r=>{
+    const f=r.querySelector("select,input"); if(!f) return; n++;
+    const a=f.dataset.answer; let good;
+    if(f.tagName==="INPUT"){ const v=parseFloat(String(f.value).replace(",",".")); good=!isNaN(v)&&Math.abs(v-parseFloat(a))<=Math.max(0.05,Math.abs(parseFloat(a))*0.001); }
+    else good=f.value===a;
+    r.classList.toggle("ok",good); r.classList.toggle("ko",!good); if(good) ok++;
+  });
+  const sc=document.getElementById("score-"+id);
+  sc.textContent=`${ok} / ${n} ${ok===n?"🎉 Bravo !":""}`;
+}
+function solve(id,target){
+  const ex=document.getElementById(id);
+  ex.querySelectorAll("select,input").forEach(f=>{f.value=f.dataset.answer});
+  check(id);
+  if(target) document.getElementById(target).classList.add("show");
+}
+document.querySelectorAll(".b-check[data-exo]").forEach(b=>b.onclick=()=>check(b.dataset.exo));
+document.querySelectorAll(".b-sol").forEach(b=>b.onclick=()=>solve(b.dataset.sol,b.dataset.target));
+
+/* ---------- avatar de la prof (portrait illustré) ---------- */
+const PHOTO="data:image/webp;base64,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";
+const AVATAR=`<div class="av-photo"><span class="wave"></span><span class="wave w2"></span><img src="${PHOTO}" alt="Mme LEGER"></div>`;
+const FACE=`<img class="av-face" src="${PHOTO}" alt="">`;
+document.getElementById("authorAv").innerHTML=FACE;
+
+
+/* ---------- capsules vidéo animées ---------- */
+const CAPS={
+ omni:{title:"Capsule 1 · Du magasin à l'omnicanal",scenes:[
+  {say:"Bonjour à tous ! Aujourd'hui, on parle d'omnicanal. Un mot un peu compliqué, pour une idée simple : le client doit pouvoir passer d'un canal à l'autre, sans difficulté.",
+   board:`<h4 class="pop">L'omnicanal</h4><p class="big pop d1">🏪 💻 📱 💬</p><p class="pop d2" style="text-align:center">Le client passe d'un canal à l'autre</p>`},
+  {say:"Une unité commerciale, c'est un lieu physique ou virtuel qui permet au client d'accéder à une offre de produits. Ces produits peuvent être des biens, qui sont tangibles, ou des services, qui sont intangibles.",
+   board:`<h4 class="pop">🏬 L'unité commerciale</h4><p class="pop d1">Lieu <b>physique</b> ou <b>virtuel</b> d'accès à une offre</p><div class="row3"><span class="chip pop d2">📦 Biens = tangibles</span><span class="chip pop d3">🤝 Services = intangibles</span></div>`},
+  {say:"On distingue trois types d'entreprises. Le brick and mortar vend uniquement en magasin. Le pure player vend uniquement en ligne. Et le click and mortar combine les deux : magasin et site internet.",
+   board:`<h4 class="pop">🏷️ Trois types d'acteurs</h4><div class="row3"><span class="chip pop d1">🏪 Brick and mortar<br><small>magasin seul</small></span><span class="chip pop d2">💻 Pure player<br><small>en ligne seul</small></span><span class="chip pop d3">🏪+💻 Click and mortar<br><small>les deux</small></span></div>`},
+  {say:"Ces deux types d'unités commerciales sont complémentaires. Le site est ouvert vingt-quatre heures sur vingt-quatre, sans se déplacer. Le magasin offre un contact humain, et permet de voir et de toucher le produit.",
+   board:`<h4 class="pop">🤝 Complémentaires</h4><p class="pop d1">💻 Site : 24 h/24, sans déplacement</p><p class="pop d2">🏪 Magasin : conseil, voir et toucher le produit</p>`},
+  {say:"Quand une entreprise utilise plusieurs canaux séparés, on parle de multicanal. Quand le client utilise plusieurs canaux pour un même achat, c'est le cross-canal. Et quand tous les canaux sont reliés, avec les mêmes stocks et les mêmes informations client, c'est l'omnicanal.",
+   board:`<h4 class="pop">🔄 Trois stratégies</h4><ul><li class="pop d1"><b>Multicanal</b> : canaux séparés</li><li class="pop d2"><b>Cross-canal</b> : plusieurs canaux pour un achat</li><li class="pop d3"><b>Omnicanal</b> : tout est relié, client au centre</li></ul>`},
+  {say:"À retenir : brick and mortar, pure player, click and mortar. Et l'objectif, c'est l'omnicanal : un client reconnu partout, quel que soit le canal. À vous de jouer avec l'activité 3 !",
+   board:`<h4 class="pop">💡 À retenir</h4><p class="big pop d1">🎯</p><p class="pop d2" style="text-align:center">Omnicanal = client reconnu partout</p><p class="pop d3" style="text-align:center">➡️ Activité 3</p>`}
+ ]},
+ parcours:{title:"Capsule 2 · Les parcours du client",scenes:[
+  {say:"Bonjour ! Aujourd'hui, nos clients ne passent plus seulement par le magasin. Voyons les quatre grands parcours qu'ils peuvent suivre.",
+   board:`<h4 class="pop">🧭 Les parcours client</h4><p class="big pop d1">💻 ⇄ 🏪</p><p class="pop d2" style="text-align:center">4 parcours à connaître</p>`},
+  {say:"Premier parcours : le click and collect. Le client achète en ligne, puis il retire sa commande en magasin.",
+   board:`<h4 class="pop">1 · Click and collect</h4><p class="big pop d1">🛒💻 ➜ 🛍️🏪</p><p class="pop d2" style="text-align:center">Achat en ligne + retrait en magasin</p>`},
+  {say:"Deuxième parcours : le web to store. Le client fait ses recherches en ligne, puis il achète en magasin.",
+   board:`<h4 class="pop">2 · Web to store</h4><p class="big pop d1">🔍💻 ➜ 🛒🏪</p><p class="pop d2" style="text-align:center">Recherche en ligne + achat en magasin</p>`},
+  {say:"Troisième parcours : le showrooming. Le client découvre et essaie le produit en magasin, puis il l'achète en ligne. Attention, il peut l'acheter chez un concurrent !",
+   board:`<h4 class="pop">3 · Showrooming</h4><p class="big pop d1">🔍🏪 ➜ 🛒💻</p><p class="pop d2" style="text-align:center">Recherche en magasin + achat en ligne</p><p class="pop d3" style="text-align:center">⚠️ Risque : achat chez un concurrent</p>`},
+  {say:"Quatrième parcours : le web in store. Le client achète en ligne, mais depuis le magasin, par exemple sur une borne ou sur la tablette du vendeur. C'est pratique quand un article n'est pas en stock.",
+   board:`<h4 class="pop">4 · Web in store</h4><p class="big pop d1">🛒💻 dans 🏪</p><p class="pop d2" style="text-align:center">Achat en ligne dans le magasin</p><p class="pop d3" style="text-align:center">Borne · tablette du vendeur</p>`},
+  {say:"Dans tous ces parcours, le vendeur reste l'élément central. Il s'adapte au parcours du client, il utilise ses outils connectés, et il consulte les stocks du magasin et du site.",
+   board:`<h4 class="pop">🧑‍💼 Le vendeur connecté</h4><div class="row3"><span class="chip pop d1">📱 Smartphone</span><span class="chip pop d2">📟 Tablette</span><span class="chip pop d3">🖥️ Borne</span><span class="chip pop d4">📦 Stocks magasin + web</span></div>`},
+  {say:"À retenir : click and collect, web to store, showrooming et web in store. À vous de jouer avec l'activité 5 !",
+   board:`<h4 class="pop">💡 À retenir</h4><ul><li class="pop d1">Click and collect</li><li class="pop d2">Web to store</li><li class="pop d3">Showrooming</li><li class="pop d4">Web in store</li></ul>`}
+ ]}
+};
+const TTS=("speechSynthesis" in window);
+/* Voix unique : Amélie (voix française d'Apple – Mac, iPhone, iPad) */
+let chosen=null;
+function loadVoices(){
+  if(!TTS) return;
+  chosen=speechSynthesis.getVoices().find(v=>/am[ée]lie/i.test(v.name))||null;
+  document.querySelectorAll(".vnote").forEach(n=>n.textContent=chosen?"🎙️ Voix : Amélie":"🔇 Voix Amélie absente de cet appareil : sous-titres seuls");
+}
+if(TTS){loadVoices(); speechSynthesis.onvoiceschanged=loadVoices; setTimeout(loadVoices,800);}
+let activeCap=null;
+document.querySelectorAll(".capsule").forEach(el=>{
+  const cap=CAPS[el.dataset.capsule]; const N=cap.scenes.length; const [chip,title]=cap.title.split(" · ");
+  el.innerHTML=`<div class="cap-top"><span class="cap-chip">${chip.toUpperCase()}</span><span class="cap-title">${title}</span><span class="cap-count"></span></div>
+  <div class="stage"><div class="who">${AVATAR}<div class="lower"><b>Mme LEGER</b><span>Professeure d'Éco-Gestion</span></div></div><div class="board"></div></div>
+  <div class="subs"></div>
+  <div class="ctrl"><button class="main" title="Lecture / pause">▶</button><button class="prev" title="Précédent">⏮</button><button class="next" title="Suivant">⏭</button>
+  <div class="dots">${cap.scenes.map((_,i)=>`<span data-i="${i}" title="Étape ${i+1}"></span>`).join("")}</div>
+  <span class="vnote"></span><button class="snd" title="Son">🔊</button><button class="fs" title="Plein écran">⛶</button></div>
+  <div class="cover"><div class="cface">${FACE}</div><p>${chip} · avec Mme LEGER</p><h3>${title}</h3><button class="start">▶ Lancer la capsule</button></div>`;
+  const board=el.querySelector(".board"),subs=el.querySelector(".subs"),who=el.querySelector(".who"),main=el.querySelector(".main"),snd=el.querySelector(".snd"),
+        cnt=el.querySelector(".cap-count"),cover=el.querySelector(".cover"),dots=[...el.querySelectorAll(".dots span")];
+  el.querySelector(".vnote").textContent=!TTS?"🔇 Synthèse vocale indisponible : sous-titres seuls":chosen?"🎙️ Voix : Amélie":"🔇 Voix Amélie absente de cet appareil : sous-titres seuls";
+  let i=0,playing=false,sound=true,run=0,timer=null;
+  const P={stop};
+  const pad=n=>String(n).padStart(2,"0");
+  const parts=t=>t.match(/[^.!?]+[.!?]*/g)||[t];
+  function render(){
+    board.classList.remove("swap"); void board.offsetWidth; board.classList.add("swap");
+    board.innerHTML=cap.scenes[i].board+`<span class="num-corner">${pad(i+1)} / ${pad(N)}</span>`;
+    subs.className="subs"; subs.innerHTML=parts(cap.scenes[i].say).map(s=>`<span>${s.trim()} </span>`).join("");
+    cnt.textContent=`${pad(i+1)} / ${pad(N)}`;
+    dots.forEach((d,k)=>{d.className=k<i?"done":k===i?"cur":"";});
+  }
+  function hl(k){subs.querySelectorAll("span").forEach((s,j)=>s.classList.toggle("on",j===k));}
+  function talk(on){who.classList.toggle("talking",on);}
+  function stop(){run++;playing=false;clearTimeout(timer);if(TTS)speechSynthesis.cancel();talk(false);main.textContent="▶";}
+  function speak(text,tok,done){
+    const ps=parts(text);
+    if(sound&&TTS&&chosen){
+      speechSynthesis.cancel();
+      ps.forEach((t,k)=>{const u=new SpeechSynthesisUtterance(t.trim());u.lang=chosen.lang;u.voice=chosen;
+        u.rate=.97;u.pitch=1;
+        u.onstart=()=>{if(tok===run){talk(true);hl(k);}};
+        if(k===ps.length-1){u.onend=()=>{if(tok===run){talk(false);timer=setTimeout(done,700);}};}
+        u.onerror=e=>{if(tok===run&&e.error!=="interrupted"&&e.error!=="canceled"){talk(false);done();}};
+        speechSynthesis.speak(u);});
+    }else{
+      subs.classList.add("all");
+      talk(true);timer=setTimeout(()=>{if(tok!==run)return;talk(false);timer=setTimeout(done,600);},Math.max(3500,text.split(/\s+/).length*380));
+    }
+  }
+  function go(k){
+    i=Math.max(0,Math.min(N-1,k)); render();
+    if(!playing){subs.classList.add("all");return;}
+    const tok=++run; clearTimeout(timer);
+    speak(cap.scenes[i].say,tok,()=>{if(tok!==run)return; if(i<N-1) go(i+1); else {stop(); i=0; cover.querySelector(".start").textContent="↻ Revoir la capsule"; cover.classList.remove("hide");}});
+  }
+  function start(){
+    if(activeCap&&activeCap!==P) activeCap.stop();
+    activeCap=P; playing=true; main.textContent="⏸"; cover.classList.add("hide"); go(i);
+  }
+  main.onclick=()=>{ if(playing) stop(); else start(); };
+  cover.querySelector(".start").onclick=start;
+  const jump=k=>{if(playing){run++;if(TTS)speechSynthesis.cancel();}cover.classList.add("hide");go(k);};
+  el.querySelector(".prev").onclick=()=>jump(i-1);
+  el.querySelector(".next").onclick=()=>jump(i+1);
+  dots.forEach(d=>d.onclick=()=>jump(+d.dataset.i));
+  snd.onclick=()=>{sound=!sound;snd.textContent=sound?"🔊":"🔇";if(playing){run++;if(TTS)speechSynthesis.cancel();go(i);}};
+  el.querySelector(".fs").onclick=()=>{try{document.fullscreenElement?document.exitFullscreen():el.requestFullscreen();}catch(e){}};
+  render(); subs.classList.add("all");
+});
+
+/* ---------- corrigés générés pour l'espace enseignant ---------- */
+const NAMES={exo1:"Activité 1 – Type d'acteur",exo2:"Activité 2 – Bien ou service",exo3:"Activité 3 – Stratégie",exo4:"Activité 4 – Outil de contact",exo5:"Activité 5 – Parcours client",exo6:"Activité 6 – Ordre du parcours",exo8:"Activité 8 – Posture du vendeur"};
+document.getElementById("corrSelects").innerHTML=Object.keys(NAMES).map(id=>{
+  const lab=Object.fromEntries(OPTS[id]);
+  const items=[...document.querySelectorAll(`#${id} .row`)].map(r=>`<li>${r.querySelector("p").textContent.replace(/^\d+\.\s*/,"")} → <b>${lab[r.querySelector("select").dataset.answer]}</b></li>`).join("");
+  return `<h4>${NAMES[id]}</h4><ol class="corr-list">${items}</ol>`;
+}).join("");
+document.getElementById("corrQuiz").innerHTML=QUIZ.map(q=>`<li>${q[0]} → <b>${q[1][q[2]]}</b></li>`).join("");
+
+/* ---------- mode enseignant ---------- */
+const H=3358160252;
+const hash=s=>{let h=5381;for(const c of s)h=((h*33)^c.charCodeAt(0))>>>0;return h;};
+const modal=document.getElementById("codeModal"),ci=document.getElementById("codeInput"),cm=document.getElementById("codeMsg");
+function setProf(on){
+  document.body.classList.toggle("prof",on);
+  document.getElementById("profBtn").textContent=on?"🔓 Mode enseignant actif":"🔒 Espace enseignant";
+  try{on?sessionStorage.setItem("profVC","1"):sessionStorage.removeItem("profVC");}catch(e){}
+}
+try{ if(sessionStorage.getItem("profVC")==="1") setProf(true); }catch(e){}
+document.getElementById("profBtn").onclick=()=>{
+  if(document.body.classList.contains("prof")){document.getElementById("prof").scrollIntoView();return;}
+  ci.value="";cm.textContent="";modal.classList.add("open");setTimeout(()=>ci.focus(),50);
+};
+function tryCode(){
+  if(hash(ci.value.trim().toUpperCase())===H){modal.classList.remove("open");setProf(true);setTimeout(()=>document.getElementById("prof").scrollIntoView(),50);}
+  else{cm.textContent="Code incorrect.";ci.select();}
+}
+document.getElementById("codeOk").onclick=tryCode;
+ci.addEventListener("keydown",e=>{if(e.key==="Enter")tryCode();if(e.key==="Escape")modal.classList.remove("open");});
+document.getElementById("codeCancel").onclick=()=>modal.classList.remove("open");
+modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("open");});
+document.getElementById("logout").onclick=()=>{
+  setProf(false);
+  document.querySelectorAll(".solution").forEach(s=>s.classList.remove("show"));
+  window.scrollTo(0,0);
+};
+document.getElementById("allSol").onclick=()=>document.querySelectorAll(".b-sol[data-sol]").forEach(b=>b.click());
+document.getElementById("resetAll").onclick=()=>{
+  document.querySelectorAll(".exo select,.exo input").forEach(f=>f.value="");
+  document.querySelectorAll(".exo .row").forEach(r=>r.classList.remove("ok","ko"));
+  document.querySelectorAll(".score").forEach(s=>s.textContent="");
+  document.querySelectorAll(".solution").forEach(s=>s.classList.remove("show"));
+  document.getElementById("quizReset").click();
+};
+
+/* ---------- sauvegarde automatique des réponses (sur ce navigateur) ---------- */
+const KEY="omnicanal_reponses_v1";
+const fields=()=>[...document.querySelectorAll(".exo select,.exo input")];
+function collect(){
+  const d={f:{},q:{}};
+  fields().forEach((f,k)=>{if(f.value!=="")d.f[k]=f.value;});
+  document.querySelectorAll("#quiz input:checked").forEach(r=>d.q[r.name]=r.value);
+  return d;
+}
+let toastT;
+function saved(){const t=document.getElementById("saveToast");t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),1200);}
+function save(){
+  if(document.body.classList.contains("prof")) return; /* les corrections affichées par l'enseignante ne sont jamais enregistrées */
+  try{localStorage.setItem(KEY,JSON.stringify(collect()));saved();}catch(e){}
+}
+function restore(){
+  fields().forEach(f=>f.value="");
+  document.querySelectorAll("#quiz input").forEach(r=>r.checked=false);
+  let d=null; try{d=JSON.parse(localStorage.getItem(KEY)||"null");}catch(e){}
+  if(!d) return;
+  const fs=fields(); Object.entries(d.f||{}).forEach(([k,v])=>{if(fs[k])fs[k].value=v;});
+  Object.entries(d.q||{}).forEach(([n,v])=>{const r=document.querySelector(`#quiz input[name="${n}"][value="${v}"]`);if(r)r.checked=true;});
+}
+document.addEventListener("change",e=>{if(e.target.closest(".exo,#quiz"))save();});
+document.addEventListener("input",e=>{if(e.target.closest(".exo"))save();});
+document.getElementById("clearMine").onclick=()=>{
+  if(!confirm("Effacer toutes vos réponses enregistrées sur cet ordinateur ?")) return;
+  try{localStorage.removeItem(KEY);}catch(e){}
+  restore();
+  document.querySelectorAll(".exo .row").forEach(r=>r.classList.remove("ok","ko"));
+  document.querySelectorAll(".score").forEach(s=>s.textContent="");
+  document.getElementById("quizReset").click();
+};
+restore();
+/* en quittant le mode enseignant, on remet les réponses de l'élève (et non les corrections) */
+document.getElementById("logout").addEventListener("click",()=>{restore();document.querySelectorAll(".exo .row").forEach(r=>r.classList.remove("ok","ko"));document.querySelectorAll(".score").forEach(s=>s.textContent="");});
+document.getElementById("resetAll").addEventListener("click",()=>{try{localStorage.removeItem(KEY);}catch(e){}});
+
+/* ---------- nav active + progression ---------- */
+const links=[...document.querySelectorAll("#navlinks a")];
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement; document.getElementById("progress").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";
+  let cur=links[0]; links.forEach(a=>{const s=document.querySelector(a.getAttribute("href")); if(s.getBoundingClientRect().top<140) cur=a;});
+  links.forEach(a=>a.classList.toggle("active",a===cur));
+});
+</script>
+</body>
+</html>
